@@ -1,8 +1,8 @@
 diff -u -r a/drivers/media/usb/em28xx/em28xx-cards.c b/drivers/media/usb/em28xx/em28xx-cards.c
---- a/drivers/media/usb/em28xx/em28xx-cards.c	2026-10-24 15:48:58.017088443 +0800
-+++ b/drivers/media/usb/em28xx/em28xx-cards.c	2026-10-24 15:49:07.156196022 +0800
-@@ -2699,6 +2699,26 @@
- 			.amux     = EM28XX_AMUX_LINE_IN,
+--- a/drivers/media/usb/em28xx/em28xx-cards.c	2026-10-24 15:53:10.444129044 +0800
++++ b/drivers/media/usb/em28xx/em28xx-cards.c	2026-10-24 15:53:21.751227733 +0800
+@@ -2677,6 +2677,26 @@
+ 			.gpio     = mygica_utv3_tuner_audio_gpio,
  		} },
  	},
 +	/* 1b80:e600 KWorld DVD Maker 2 (HU319-E)
@@ -28,7 +28,7 @@ diff -u -r a/drivers/media/usb/em28xx/em28xx-cards.c b/drivers/media/usb/em28xx/
  	[EM2828X_BOARD_HAUPPAUGE_USB_LIVE2] = {
  		.name         = "Hauppauge USB Live2",
  		.vchannels    = 2,
-@@ -2888,6 +2908,8 @@
+@@ -2866,6 +2886,8 @@
  			.driver_info = EM2820_BOARD_PINNACLE_DVC_90 },
  	{ USB_DEVICE(0x1b80, 0xe304), /* Kworld DVD Maker 2 */
  			.driver_info = EM2820_BOARD_PINNACLE_DVC_90 },
@@ -37,7 +37,7 @@ diff -u -r a/drivers/media/usb/em28xx/em28xx-cards.c b/drivers/media/usb/em28xx/
  	{ USB_DEVICE(0x0ccd, 0x0036),
  			.driver_info = EM2820_BOARD_TERRATEC_CINERGY_250 },
  	{ USB_DEVICE(0x0ccd, 0x004c),
-@@ -3889,6 +3911,11 @@
+@@ -3835,6 +3857,11 @@
  			dev->wait_after_write = 0;
  			dev->eeprom_addrwidth_16bit = 1;
  			break;
@@ -46,27 +46,27 @@ diff -u -r a/drivers/media/usb/em28xx/em28xx-cards.c b/drivers/media/usb/em28xx/
 +			dev->wait_after_write = 0;
 +			dev->eeprom_addrwidth_16bit = 1;
 +			break;
- 		case CHIP_ID_EM2883:
- 			chip_name = "em2882/3";
- 			dev->wait_after_write = 0;
+ 		case CHIP_ID_EM2840:
+ 			chip_name = "em2840";
+ 			break;
 diff -u -r a/drivers/media/usb/em28xx/em28xx.h b/drivers/media/usb/em28xx/em28xx.h
---- a/drivers/media/usb/em28xx/em28xx.h	2026-10-24 15:48:58.115089595 +0800
-+++ b/drivers/media/usb/em28xx/em28xx.h	2026-10-24 15:49:00.021111999 +0800
-@@ -151,6 +151,7 @@
+--- a/drivers/media/usb/em28xx/em28xx.h	2026-10-24 15:53:10.618130560 +0800
++++ b/drivers/media/usb/em28xx/em28xx.h	2026-10-24 15:53:15.878176428 +0800
+@@ -150,6 +150,7 @@
+ #define EM2828X_BOARD_HAUPPAUGE_955_V2            110
  #define EM2828X_BOARD_HAUPPAUGE_975_V2            111
  #define EM28178_BOARD_PCTV_461E_V3                112
- #define EM28281_BOARD_STARTECH_SVID2USB232        113
-+#define EM28286_BOARD_KWORLD_DVD_MAKER_2          114
++#define EM28286_BOARD_KWORLD_DVD_MAKER_2          113
  
  /* Limits minimum and default number of buffers */
  #define EM28XX_MIN_BUF 4
 diff -u -r a/drivers/media/usb/em28xx/em28xx-reg.h b/drivers/media/usb/em28xx/em28xx-reg.h
---- a/drivers/media/usb/em28xx/em28xx-reg.h	2026-10-24 15:48:58.066089018 +0800
-+++ b/drivers/media/usb/em28xx/em28xx-reg.h	2026-10-24 15:49:00.021111999 +0800
-@@ -284,6 +284,7 @@
+--- a/drivers/media/usb/em28xx/em28xx-reg.h	2026-10-24 15:53:10.653130865 +0800
++++ b/drivers/media/usb/em28xx/em28xx-reg.h	2026-10-24 15:53:15.878176428 +0800
+@@ -283,6 +283,7 @@
+ 	CHIP_ID_EM2884 = 68,
  	CHIP_ID_EM28174 = 113,
  	CHIP_ID_EM28178 = 114,
- 	CHIP_ID_EM28281 = 145,
 +	CHIP_ID_EM28286 = 146,
  	CHIP_ID_EM2828X = 148,
  };
