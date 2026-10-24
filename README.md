@@ -403,10 +403,14 @@ above plus `0x7A30`, `0x7A08/09/0A`, `0x7A02`, `0x48`. Closing the gap changed n
 ### Conclusion
 
 Register state now closely matches the Windows driver and the input still produces
-nothing, on hardware whose USB link is independently unreliable (see below). The most
-probable remaining explanation is a faulty analog input path on this unit. The decisive
-test is to run the stick under Windows with its own driver: if it shows no picture there
-either, the unit is dead and no further driver work will help.
+nothing, on hardware whose USB link is independently unreliable (see below).
+
+The analog input remains **unproven**. The test source was never verified against a
+separate capture device, so "dead input on this stick" and "faulty source or cable"
+cannot currently be distinguished. The decisive test is either a known-good composite
+source (DVD player, games console) or running the stick under Windows with its own
+driver — if neither produces a picture, the input is faulty and no further driver work
+will help.
 
 Note the driver *is* demonstrably controlling this chip: changing the video standard
 flips the output geometry between 720x576 and 720x480.
