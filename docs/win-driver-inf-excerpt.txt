@@ -1,0 +1,38 @@
+Excerpt from the KWorld / Jaycar XC4867 Windows driver package
+("XC4867 Win 10/x64/EMBDA_x86_x64.inf", eMPIA BDA driver, dated 2020-04-06).
+
+Reproduced here as short factual citation of hardware IDs, not redistributed as a
+driver package. The binaries (emBDA*.sys, emOEM*.sys, *.ax, merlinFW.rom, installer)
+are NOT in this repository.
+
+Key lines:
+
+  ; HU319-E EM2980 Iso   <-- the KWorld DVD Maker 2 / Jaycar XC4867 we care about
+  %USB28285.DeviceDesc.OEM% = USB28285,USB\VID_1B80&PID_E600&MI_00	; HU319-E EM2980 Iso
+  %USB28285.DeviceDesc.OEM% = USB28285,USB\VID_1B80&PID_E601&MI_00	; HU319-DE EM28284 Iso
+  %USB28285.DeviceDesc.OEM% = USB28285,USB\VID_1B80&PID_E606&MI_00	; GA HU3192-E EM2980 Iso
+  %USB28285.DeviceDesc.OEM% = USB28285,USB\VID_1B80&PID_E607&MI_00	; HU3193-E EM2980 Iso
+  %USB28285.DeviceDesc.OEM% = USB28285,USB\VID_1B80&PID_E608&MI_00	; HU3195-E Box Type EM2980 Iso
+  %USB28285.DeviceDesc.OEM% = USB28285,USB\VID_1B80&PID_E60A&MI_00	; HU3194-E Box Type EM2980 Iso
+  %USB28285.DeviceDesc.OEM% = USB28285,USB\VID_1B80&PID_E60B&MI_00	; HU3196-E EM2980 Iso
+  %USB28285.DeviceDesc.OEM% = USB28285,USB\VID_1B80&PID_E60E&MI_00	; HC1882-Single EM2980 Iso
+  %USB28285.DeviceDesc.OEM% = USB28285,USB\VID_1B80&PID_E60F&MI_00	; HC1882-Dual EM2980 Iso
+  %USB28285.DeviceDesc.OEM% = USB28285,USB\VID_1B80&PID_E610&MI_00	; HU319-E EM2980 Iso
+  %USB28285.DeviceDesc.OEM% = USB28285,USB\VID_1B80&PID_E31D&MI_00	; Corel EM2980 Bulk
+  %USB28285.DeviceDesc.OEM% = USB28285,USB\VID_EB1A&PID_8285&MI_00	; EMPBoard
+  %USB28285.DeviceDesc.OEM% = USB28285,USB\VID_EB1A&PID_8282
+  %USB28285.DeviceDesc%      = USB28285,USB\VID_EB1A&PID_8283&MI_00
+
+Notes:
+  * Every ID above is bound to the *same* driver instance ("USB28285"), i.e. eMPIA
+    ships one code path for this whole family.
+  * VID_EB1A&PID_8286 is the StarTech SVID2USB232, which mainline Linux already
+    supports via EM28281_BOARD_STARTECH_SVID2USB232 (decoder = EM28XX_BUILTIN).
+    Same driver instance => strongly suggests the eMPIA side is protocol-compatible.
+  * "Iso" vs "Bulk" is the USB streaming transfer type. PIDs e609/e611 and e31d are
+    the bulk variants; mainline has dev->analog_xfer_mode for that.
+  * The package also ships merlinFW.rom, but the 2019 linux-media report for the
+    older VS-USB2800 concluded no firmware load is involved for capture. Unverified
+    for EM2980.
+
+Source page (product): https://www.jaycar.com.au/usb-2-0-dvd-maker/p/XC4867
